@@ -1,5 +1,5 @@
 from crewai import Agent
-from .tools import github_tool, rss_tool, wikipedia_tool, search_tool
+from .tools import github_trends_search, rss_feed_reader, wikipedia_search
 
 def create_agents():
     # Agent 1: Open Data Collector
@@ -10,7 +10,7 @@ def create_agents():
             "You are a senior market researcher skilled at extracting insights from public data sources. "
             "You know how to separate noise from signal. You strictly use open data."
         ),
-        tools=[search_tool, wikipedia_tool, github_tool, rss_tool],
+        tools=[wikipedia_search, github_trends_search, rss_feed_reader],
         allow_delegation=False,
         verbose=True
     )
