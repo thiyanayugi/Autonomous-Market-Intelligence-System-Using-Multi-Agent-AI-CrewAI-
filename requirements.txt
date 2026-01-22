@@ -1,0 +1,8 @@
+crewai
+crewai-tools
+langchain-community
+duckduckgo-search
+wikipedia
+requests
+beautifulsoup4
+python-dotenv
