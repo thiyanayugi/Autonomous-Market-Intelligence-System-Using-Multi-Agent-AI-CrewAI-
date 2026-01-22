@@ -10,9 +10,10 @@ This system employs four specialized agents:
 4. **Executive Intelligence Report Writer**: Synthesizes everything into a CEO-level report.
 
 ## Usage
-1. Install dependencies:
+1. Create and activate Conda environment:
    ```bash
-   pip install -r requirements.txt
+   conda env create -f environment.yml
+   conda activate market-intelligence
    ```
 2. Set up environment variables in `.env` (see `.env.example`).
 3. Run the analysis:
