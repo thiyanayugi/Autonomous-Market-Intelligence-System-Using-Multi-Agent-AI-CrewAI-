@@ -1,5 +1,7 @@
 # 🤖 Autonomous Market Intelligence System
 
+![Hero Image](assets/hero-image.png)
+
 <div align="center">
 
 ![Python](https://img.shields.io/badge/python-3.11-blue.svg)
