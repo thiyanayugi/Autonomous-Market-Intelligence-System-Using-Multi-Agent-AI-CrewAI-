@@ -4,7 +4,10 @@ from dotenv import load_dotenv
 from src.crew import run_market_intelligence_crew
 
 # Load environment variables
-load_dotenv()
+# Load environment variables
+from pathlib import Path
+env_path = Path('.') / '.env'
+load_dotenv(dotenv_path=env_path)
 
 def main():
     print("Welcome to the Autonomous Market Intelligence Agent")
