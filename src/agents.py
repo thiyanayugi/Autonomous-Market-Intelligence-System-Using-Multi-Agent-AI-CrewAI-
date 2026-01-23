@@ -1,7 +1,16 @@
-from crewai import Agent
+from crewai import Agent, LLM
 from .tools import github_trends_search, rss_feed_reader, wikipedia_search
+import os
 
 def create_agents():
+    # Configure DeepSeek R1 LLM via OpenRouter
+    llm = LLM(
+        model="deepseek/deepseek-r1-0528:free",
+        api_key=os.getenv("OPENROUTER_API_KEY"),
+        base_url="https://openrouter.ai/api/v1",
+        temperature=0.7
+    )
+    
     # Agent 1: Open Data Collector
     collector = Agent(
         role='Market Data Intelligence Collector',
@@ -12,7 +21,8 @@ def create_agents():
         ),
         tools=[wikipedia_search, github_trends_search, rss_feed_reader],
         allow_delegation=False,
-        verbose=True
+        verbose=True,
+        llm=llm
     )
 
     # Agent 2: Trend Analysis Agent
@@ -24,7 +34,8 @@ def create_agents():
             "You analyze frequency of topics, growth/decline signals, and adoption patterns."
         ),
         allow_delegation=False,
-        verbose=True
+        verbose=True,
+        llm=llm
     )
 
     # Agent 3: Risk & Opportunity Strategist
@@ -36,7 +47,8 @@ def create_agents():
             "You connect risks and opportunities to specific trends."
         ),
         allow_delegation=False,
-        verbose=True
+        verbose=True,
+        llm=llm
     )
 
     # Agent 4: Executive Intelligence Report Writer
@@ -48,7 +60,8 @@ def create_agents():
             "You synthesize outputs into clear business language, keeping reports under 2 pages."
         ),
         allow_delegation=False,
-        verbose=True
+        verbose=True,
+        llm=llm
     )
 
     return collector, analyst, strategist, writer
