@@ -3,14 +3,27 @@ from .tools import github_trends_search, rss_feed_reader, wikipedia_search
 import os
 
 def create_agents():
-    # Configure DeepSeek R1 LLM via OpenRouter
     import os
+    from pathlib import Path
     from dotenv import load_dotenv
-    load_dotenv()
+    
+    # Load env file safely
+    env_path = Path('.') / '.env'
+    load_dotenv(dotenv_path=env_path)
+
+    # Configure LLM using OpenAI compatibility
+    # CrewAI/LiteLLM will pick up OPENAI_API_KEY and OPENAI_API_BASE from env automatically
+    # We just need to specify the model with 'openai/' prefix if we want to force that path,
+    # or just pass the model name if LiteLLM handles it. 
+    # For OpenRouter via OpenAI compat, 'openai/<model_name>' usually works best 
+    # when API_BASE is set to openrouter.
+
+    model_name = os.getenv("LLM_MODEL", "deepseek/deepseek-r1-0528:free")
     
     llm = LLM(
-        model="openrouter/deepseek/deepseek-r1",
-        api_key=os.getenv("OPENROUTER_API_KEY"),
+        model=f"openai/{model_name}",
+        api_key=os.getenv("OPENAI_API_KEY"),
+        base_url=os.getenv("OPENAI_API_BASE"),
         temperature=0.7
     )
     
