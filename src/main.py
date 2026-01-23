@@ -26,9 +26,15 @@ def main():
         print("\n\n########################")
         print("## ANALYSIS COMPLETED ##")
         print("########################\n")
-        print(result)
+        if result:
+            print("Result preview:")
+            print(str(result)[:500] + "..." if len(str(result)) > 500 else str(result))
+        else:
+            print("⚠️  Warning: No result returned from crew")
     except Exception as e:
-        print(f"An error occurred: {e}")
+        print(f"\n❌ An error occurred: {e}")
+        import traceback
+        traceback.print_exc()
 
 if __name__ == "__main__":
     main()

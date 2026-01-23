@@ -4,10 +4,13 @@ import os
 
 def create_agents():
     # Configure DeepSeek R1 LLM via OpenRouter
+    import os
+    from dotenv import load_dotenv
+    load_dotenv()
+    
     llm = LLM(
-        model="deepseek/deepseek-r1-0528:free",
+        model="openrouter/deepseek/deepseek-r1",
         api_key=os.getenv("OPENROUTER_API_KEY"),
-        base_url="https://openrouter.ai/api/v1",
         temperature=0.7
     )
     
